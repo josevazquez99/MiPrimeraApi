@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jacaranda.miPrimeraAPI.model.State;
+import com.jacaranda.miPrimeraAPI.model.StateDTO;
 import com.jacaranda.miPrimeraAPI.repository.StateRepository;
 
 @Service
@@ -23,8 +24,9 @@ public class StateService {
 		return stateRepository.save(state);
 	}
 	
-	public List<State> getAll(){
-		return this.stateRepository.findAll();
+	public  List<StateDTO> getAll(){
+		List<State> list = stateRepository.findAll();
+		return StateDTO.convertProvinceToDTO(list);
 	}
 	
 	public State update(State state) {
@@ -51,6 +53,8 @@ public class StateService {
 		
 		return result;
 	}
+	
+	
 	
 	
 }

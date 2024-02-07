@@ -4,25 +4,38 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="pueblos")
+@Table(name = "pueblos")
 public class Town {
-	
+
 	@Id
-	@Column(name="codpue")
+	@Column(name = "codpue")
 	private String codpue;
-	
-	@Column(name="nombre")
+
+	@Column(name = "nombre")
 	private String name;
-	
+
 	@ManyToOne
-	@JoinColumn(name="codpro")
+	@JoinColumn(name = "codpro")
 	private State codpro;
+
+	public Town() {
+		super();
+	}
+
+	public Town(String codpue, String name, State codpro) {
+		super();
+		this.codpue = codpue;
+		this.name = name;
+		this.codpro = codpro;
+	}
 
 	public String getCodpue() {
 		return codpue;
@@ -64,8 +77,5 @@ public class Town {
 		Town other = (Town) obj;
 		return Objects.equals(codpue, other.codpue);
 	}
-	
-	
-	
 
 }

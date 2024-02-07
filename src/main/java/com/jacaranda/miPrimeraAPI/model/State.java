@@ -10,23 +10,26 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="provincias")
+@Table(name = "provincias")
 public class State {
-	
+
 	@Id
-	@Column(name="codpro")
+	@Column(name = "codpro")
 	private String codState;
-	
-	@Column(name="nombre")
+
+	@Column(name = "nombre")
 	private String name;
-	
-	@OneToMany(mappedBy="codpro")
+
+	@OneToMany(mappedBy = "codpro")
 	private List<Town> towns;
-	
+
+	public State() {
+		super();
+	}
+
 	public String getCodState() {
 		return codState;
 	}
-	
 
 	public String getName() {
 		return name;
@@ -40,12 +43,18 @@ public class State {
 		this.codState = codState;
 	}
 
+	public List<Town> getTowns() {
+		return towns;
+	}
+
+	public void setTowns(List<Town> towns) {
+		this.towns = towns;
+	}
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(codState);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -58,8 +67,5 @@ public class State {
 		State other = (State) obj;
 		return Objects.equals(codState, other.codState);
 	}
-	
-	
-	
 
 }
